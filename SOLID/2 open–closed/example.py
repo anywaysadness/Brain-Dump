@@ -39,7 +39,7 @@ class ColorSpecification(Specification):
 
     def is_satisfies(self, item):
         """
-        Проверяет, соответствует ли цвет продукта заданному цвету.
+        Проверяет, соответствует ли цвет заданному цвету.
         """
         return item.color == self.color
 
@@ -50,7 +50,7 @@ class SizeSpecification(Specification):
 
     def is_satisfies(self, item):
         """
-        Проверяет, соответствует ли размер продукта заданному размеру.
+        Проверяет, соответствует ли размер заданному размеру.
         """
         return item.size == self.size
 
@@ -108,11 +108,11 @@ color_spec = ColorSpecification(Color.GREEN)
 size_spec = SizeSpecification(Size.SMALL)
 
 # итемы, которые являются зелеными И маленькими
-color_size_spec = MultipleFieldSpecification(color_spec, size_spec)
+color_and_size_spec = MultipleFieldSpecification(color_spec, size_spec)
 
 # Создание экземпляра фильтра
 product_filter = ProductFilter()
 
 # Применение фильтра к списку продуктов
-for product in product_filter.filter(products, color_size_spec):
+for product in product_filter.filter(items=products, spec=color_and_size_spec):
     print(product)
